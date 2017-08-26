@@ -7,7 +7,7 @@ node {
   checkout scm
 
   stage 'Build image'
-  sh("docker build -t ${imageTag} .")
+  sh("gcloud container builds submit . -t ${imageTag}")
 
   stage 'Run Go tests'
   sh("docker run ${imageTag} go test")
